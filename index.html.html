@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Ti 💖</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(#fde2e4, #fff1f3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Arial', sans-serif;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        max-width: 320px;
+        animation: fadeIn 2s;
+        position: relative;
+    }
+
+    h1 {
+        color: #e63946;
+        font-size: 22px;
+    }
+
+    p {
+        color: #555;
+        font-size: 16px;
+    }
+
+    button {
+        margin: 10px;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .btn-si {
+        background: #e63946;
+        color: white;
+    }
+
+    .btn-si:hover {
+        background: #d62839;
+    }
+
+    .btn-no {
+        background: #ffd6da;
+        color: #e63946;
+        position: absolute;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+        position: absolute;
+        color: #ff6b81;
+        font-size: 20px;
+        animation: float 6s infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div class="card" id="card1">
+    <h1>Para alguien muy especial 💕</h1>
+    <p>
+        Desde que llegaste,<br>
+        mis días son más bonitos.<br><br>
+        No necesito una fecha para amarte,<br>
+        pero sí quiero compartirla contigo.
+    </p>
+    <button class="btn-si" onclick="mostrarPregunta()">Hay algo que quiero preguntarte…</button>
+</div>
+
+<div class="card hidden" id="card2">
+    <h1>💖</h1>
+    <p><strong>¿Quieres ser mi San Valentín?</strong></p>
+
+    <button class="btn-si" onclick="aceptar()">Sí 💕</button>
+    <button class="btn-no" id="btnNo">No</button>
+</div>
+
+<script>
+function mostrarPregunta() {
+    document.getElementById("card1").classList.add("hidden");
+    document.getElementById("card2").classList.remove("hidden");
+}
+
+function aceptar() {
+    document.getElementById("card2").innerHTML = `
+        <h1>🥰</h1>
+        <p><strong>Sabía que dirías que sí 💖</strong><br>
+        Feliz San Valentín 💕</p>
+    `;
+}
+
+// botón NO que se escapa
+const btnNo = document.getElementById("btnNo");
+btnNo.addEventListener("mouseover", moverBoton);
+btnNo.addEventListener("click", moverBoton);
+
+function moverBoton() {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    btnNo.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// corazones flotando
+for (let i = 0; i < 15; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDelay = Math.random() * 5 + "s";
+    document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
